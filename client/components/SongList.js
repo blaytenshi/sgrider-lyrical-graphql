@@ -7,3 +7,5 @@ class SongList extends Component {
         )
     }
 }
+
+export default SongList;
