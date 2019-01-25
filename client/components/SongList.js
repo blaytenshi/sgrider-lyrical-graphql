@@ -6,20 +6,17 @@ class SongList extends Component {
     renderSongs() {
         return this.props.data.songs.map(song => {
             return (
-                <li key={song.id}>{song.title}</li>
+                <li className="collection-item" key={song.id}>{song.title}</li>
             )
         })
     }
 
     render() {
-        console.log(this.props);
-
+        if (this.props.data.loading) { return <div>Loading...</div> }
         return(
-            <div>
-                { // can use if (this.props.data.loading) {...} instead of this conditional rendering method
-                    !this.props.data.loading && this.renderSongs()
-                }
-            </div>
+            <ul className="collection">
+                { this.renderSongs() }
+            </ul>
         )
     }
 }
