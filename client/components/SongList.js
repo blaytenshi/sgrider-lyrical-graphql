@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 
 class SongList extends Component {
     renderSongs() {
@@ -12,10 +12,12 @@ class SongList extends Component {
     }
 
     render() {
-        if (this.props.data.loading) { return <div>Loading...</div> }
-        return(
+        if (this.props.data.loading) {
+            return <div>Loading...</div>
+        }
+        return (
             <ul className="collection">
-                { this.renderSongs() }
+                {this.renderSongs()}
             </ul>
         )
     }
