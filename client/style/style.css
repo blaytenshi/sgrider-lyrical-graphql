@@ -1,0 +1,8 @@
+.collection-item { /* selects each song li in the list */
+    display: flex; /* using the flex box display system in csss */
+    justify-content: space-between; /* makes sure that there a maximum amount of space between the song title and the icon */
+}
+
+.material-icons {
+    cursor: pointer;
+}

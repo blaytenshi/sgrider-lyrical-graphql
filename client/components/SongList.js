@@ -25,7 +25,7 @@ class SongList extends Component {
             variables: {
                 id: id
             }
-        }).then(() => this.props.data.refetch())
+        }).then(() => this.props.data.refetch()) // this re-queries the gql that was tied in with graphql HOC
     };
 
     render() {

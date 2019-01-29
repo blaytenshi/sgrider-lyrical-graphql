@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import './style/style.css';
 
 import App from './components/App';
 import SongList from './components/SongList';
