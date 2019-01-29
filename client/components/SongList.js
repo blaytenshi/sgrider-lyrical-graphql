@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
+import fetchSongs from '../queries/fetchSongs';
 
 class SongList extends Component {
     renderSongs() {
@@ -16,20 +17,19 @@ class SongList extends Component {
             return <div>Loading...</div>
         }
         return (
-            <ul className="collection">
-                {this.renderSongs()}
-            </ul>
+            <div>
+                <ul className="collection">
+                    {this.renderSongs()}
+                </ul>
+                <button
+                    type={'button'}
+                    onClick={() => {this.props.history.push('/songs/new/')}}
+                    className="btn-floating btn-large red right">
+                    <i className="material-icons">add</i>
+                </button>
+            </div>
         )
     }
 }
 
-const query = gql`
-    {
-      songs{
-        id
-        title
-      }
-    }
-`;
-
-export default graphql(query)(SongList);
+export default graphql(fetchSongs)(SongList);
