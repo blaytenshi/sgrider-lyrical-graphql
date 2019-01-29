@@ -2,15 +2,31 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
 import fetchSongs from '../queries/fetchSongs';
+import deleteSong from '../queries/deleteSong';
 
 class SongList extends Component {
     renderSongs() {
-        return this.props.data.songs.map(song => {
+        return this.props.data.songs.map(({ id, title }) => {
+
             return (
-                <li className="collection-item" key={song.id}>{song.title}</li>
+                <li className="collection-item" key={id}>
+                    {title}
+                    <i
+                        className={"material-icons"}
+                        onClick={() => this.onSongDelete(id)}
+                    >delete</i>
+                </li>
             )
         })
     }
+
+    onSongDelete = (id) => {
+        this.props.mutate({
+            variables: {
+                id: id
+            }
+        }).then(() => this.props.data.refetch())
+    };
 
     render() {
         if (this.props.data.loading) {
@@ -32,4 +48,6 @@ class SongList extends Component {
     }
 }
 
-export default graphql(fetchSongs)(SongList);
+export default graphql(deleteSong)( // this has to be like this because the graphql HOC is not designed to handle multiple queries and mutations. Maybe we can use recompose?
+    graphql(fetchSongs)(SongList)
+);

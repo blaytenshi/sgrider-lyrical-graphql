@@ -20,7 +20,7 @@ class SongCreate extends Component {
             },
             refetchQueries: [{
                 query: fetchSongs,
-                // also takes vaiables like in the above
+                // also takes variables like in the above
             }]
         }).then(() => {
             this.props.history.push('/songs');
