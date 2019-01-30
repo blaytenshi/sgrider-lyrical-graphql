@@ -15,14 +15,12 @@ class SongDetail extends Component {
                 <div>
                     <button type='button' onClick={() => this.props.history.push('/')}>Back</button>
                     <h3>{song.title}</h3>
-                    <LyricCreate/>
+                    <LyricCreate songId={this.props.match.params.id} />
                 </div>
             )
         }
     }
 }
-
-// export default SongDetail;
 
 export default graphql(fetchSong, {
     options: (props) => { // the query option. the graphql HOC has the router props
