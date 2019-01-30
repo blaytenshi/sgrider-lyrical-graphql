@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "server": "nodemon index.js --ignore client"
+    "server": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

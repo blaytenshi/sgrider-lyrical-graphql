@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import fetchSong from '../queries/fetchSong';
+import LyricCreate from './LyricCreate';
 
 class SongDetail extends Component {
     render() {
-        return (
-            <div>
-                <h3>Song Detail</h3>
-            </div>
-        )
-    }
 
+        const { song } = this.props.data;
+        if ( !song ) {
+            // can show a spinner here
+            return <div>Loading...</div>
+        } else {
+            return (
+                <div>
+                    <button type='button' onClick={() => this.props.history.push('/')}>Back</button>
+                    <h3>{song.title}</h3>
+                    <LyricCreate/>
+                </div>
+            )
+        }
+    }
 }
 
-export default SongDetail;
+// export default SongDetail;
+
+export default graphql(fetchSong, {
+    options: (props) => { // the query option. the graphql HOC has the router props
+        return {
+            variables: {
+                id: props.match.params.id // comes from router props
+            }
+        }
+    }
+})(SongDetail);

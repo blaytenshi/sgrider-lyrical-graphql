@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
+import { Link } from 'react-router-dom';
 import fetchSongs from '../queries/fetchSongs';
 import deleteSong from '../queries/deleteSong';
 
@@ -10,7 +11,7 @@ class SongList extends Component {
 
             return (
                 <li className="collection-item" key={id}>
-                    {title}
+                    <Link to={`/songs/${id}`}>{title}</Link>
                     <i
                         className={"material-icons"}
                         onClick={() => this.onSongDelete(id)}
