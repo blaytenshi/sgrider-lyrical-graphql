@@ -36,6 +36,8 @@ class LyricCreate extends Component {
     }
 }
 
+// without the likes in the lyrics being returned by the mutation, we get a setState error and the SongDetail will be in
+// perpetual "Loading..." as it's looking for this likes information to display in the component
 const mutation = gql`
     mutation AddLyricToSong($content:String, $id:ID!) {
         addLyricToSong(content:$content, songId: $id) {
@@ -43,6 +45,7 @@ const mutation = gql`
             lyrics{
                 id
                 content
+                likes
             }
         }
     }

@@ -10,12 +10,13 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "server": "nodemon index.js --ignore client"
+    "server": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "^0.1.27",
+    "apollo-cache-inmemory": "^1.4.2",
     "axios": "^0.18.0",
     "body-parser": "^1.16.0",
     "connect-mongo": "^2.0.3",
