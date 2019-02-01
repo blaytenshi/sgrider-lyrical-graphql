@@ -4,12 +4,20 @@ import gql from 'graphql-tag';
 
 class LyricList extends Component {
 
-    onLike = (id) => {
+    onLike = (id, likes) => { // passed in number of likes from render lyrics
         console.log(id);
 
         this.props.mutate({
             variables: {
                 id: id
+            },
+            optimisticResponse: {
+                __type: 'Mutation', // must specifically say we're making a mutation
+                likeLyric: { // this should match the response data we're getting back from the mutation function in terms of structure
+                    id: id,
+                    __typename: 'LyricType',
+                    likes: likes + 1
+                }
             }
         })
     };
@@ -22,7 +30,7 @@ class LyricList extends Component {
                     <div className={"vote-box"}>
                         <i
                             className="material-icons"
-                            onClick={() => this.onLike(id)}
+                            onClick={() => this.onLike(id, likes)}
                         >
                             thumb_up
                         </i>
